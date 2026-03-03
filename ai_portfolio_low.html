@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Developer Portfolio</title>
+  <meta name="description" content="AI 개발자 포트폴리오" />
+  <style>
+    :root{
+      --bg:#0b0f17;
+      --panel:#0f1624;
+      --text:#e6eaf2;
+      --muted:#a7b0c0;
+      --line:rgba(255,255,255,.08);
+      --accent:#7c3aed;
+      --accent2:#22c55e;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --max: 1040px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(900px 500px at 18% 8%, rgba(124,58,237,.22), transparent 55%),
+        radial-gradient(850px 520px at 85% 25%, rgba(34,197,94,.12), transparent 60%),
+        radial-gradient(900px 650px at 45% 95%, rgba(59,130,246,.10), transparent 60%),
+        var(--bg);
+      background-repeat:no-repeat;
+      background-attachment:fixed;
+      background-size:cover;
+
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial;
+      line-height:1.6;
+      letter-spacing:-0.2px;
+    }
+    a{color:inherit; text-decoration:none}
+    a:hover{color:#fff}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 22px 70px}
+
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 16px;
+      margin:10px 0 18px;
+      position:sticky; top:12px;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,15,23,.82), rgba(11,15,23,.55));
+      border:1px solid var(--line);
+      border-radius: 16px;
+      z-index:5;
+    }
+    .brand{display:flex; gap:10px; align-items:center}
+    .logo{
+      width:36px; height:36px; border-radius:12px;
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(34,197,94,.55));
+      box-shadow: 0 12px 30px rgba(124,58,237,.25);
+    }
+    nav{display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end}
+    nav a{color:var(--muted); font-weight:600; font-size:14px}
+    nav a:hover{color:var(--text)}
+
+    :target{scroll-margin-top:96px}
+    section{scroll-margin-top:96px}
+
+    .hero{
+      padding:44px 0 0px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr; padding-top:26px}
+      header{position:relative; top:auto; margin-top:0}
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-main{padding:26px 24px}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:7px 12px; border-radius:999px;
+      border:1px solid rgba(124,58,237,.35);
+      background: rgba(124,58,237,.10);
+      color:#d8cffc; font-weight:650; font-size:13px;
+    }
+    h1{margin:14px 0 10px; font-size:40px; line-height:1.15; letter-spacing:-0.8px}
+    @media (max-width: 520px){ h1{font-size:32px} }
+    .lead{margin:0 0 18px; color:var(--muted); font-size:16px}
+    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 14px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      font-weight:700; font-size:14px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn.primary{
+      border-color: rgba(124,58,237,.55);
+      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(124,58,237,.55));
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .hero-side{padding:18px}
+    .mini{padding:16px 16px 14px}
+    .mini h3{margin:0 0 8px; font-size:14px; color:#dbe2f2}
+    .kv{display:grid; gap:10px; margin-top:10px}
+    .kv a, .kv div{
+      display:flex; justify-content:space-between; gap:12px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.015);
+      color: var(--muted);
+      font-size:13px;
+    }
+    .kv span{color:var(--text); font-weight:650}
+
+    .sections{margin-top:18px; display:grid; gap:16px}
+    section.card{padding:20px 22px}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:10px; flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    .section-title h2{margin:0; font-size:18px}
+    .section-title p{margin:0; color:var(--muted); font-size:13px}
+
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px}
+    @media (max-width: 900px){ .grid3{grid-template-columns:1fr} }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.015);
+      color: var(--muted);
+      font-size:12px;
+      font-weight:650;
+    }
+    .highlight{
+      padding:14px 14px 12px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.015);
+    }
+    .highlight b{color:var(--text)}
+    .highlight p{margin:6px 0 0; color:var(--muted); font-size:13px}
+
+    /* Projects */
+    .projects{display:grid; gap:12px}
+    .proj{
+      padding:16px 16px 14px;
+      border-radius: 18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.015);
+
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;  /* ✅ 박스 내부 우측 공간 */
+      gap:14px;
+      align-items:start;
+    }
+    @media (max-width: 900px){ .proj{grid-template-columns:1fr} }
+
+    .proj-body{min-width:0}
+    .proj-top{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+    .proj h3{margin:0; font-size:15px}
+    .proj .meta{color:var(--muted); font-size:13px; margin-top:6px}
+    .proj ul{margin:10px 0 0; padding-left:18px; color:var(--muted); font-size:13px}
+    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .tag{
+      padding:6px 9px;
+      border-radius:999px;
+      border:1px solid rgba(124,58,237,.28);
+      background: rgba(124,58,237,.10);
+      color:#d8cffc;
+      font-size:12px;
+      font-weight:650;
+    }
+    .tag.green{
+      border-color: rgba(34,197,94,.28);
+      background: rgba(34,197,94,.10);
+      color:#ccf3db;
+    }
+
+    .proj-media{
+      min-width:0;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.012);
+      padding:10px;
+    }
+    .media-grid{display:grid; grid-template-columns:1fr; gap:10px}
+    .shot{
+      border-radius: 14px;
+      border:1px solid var(--line);
+      overflow:hidden;
+      aspect-ratio: 16/10;
+      background:
+        radial-gradient(420px 220px at 20% 25%, rgba(124,58,237,.22), transparent 60%),
+        radial-gradient(420px 220px at 80% 75%, rgba(34,197,94,.14), transparent 60%),
+        rgba(255,255,255,.02);
+      display:flex; align-items:center; justify-content:center;
+      color: rgba(230,234,242,.72);
+      font-weight:750;
+      font-size:13px;
+    }
+    .shot img{width:100%; height:100%; object-fit:cover; display:block}
+    .media-note{margin:10px 0 0; color:var(--muted); font-size:12px}
+
+    .two{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    @media (max-width: 900px){ .two{grid-template-columns:1fr} }
+    .skills{display:flex; flex-wrap:wrap; gap:8px}
+    .skill{
+      padding:7px 10px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.015);
+      color: var(--muted);
+      font-size:12px;
+      font-weight:650;
+    }
+    
+    .shot-link{display:block}
+    .shot-link:focus{outline: 2px solid rgba(124,58,237,.6); outline-offset: 4px; border-radius: 14px}
+    .shot{display:flex; border-radius:14px; border:1px solid var(--line); overflow:hidden; aspect-ratio: 16/10; background: rgba(255,255,255,.02)}
+    .shot img{width:100%; height:100%; object-fit:cover; display:block}
+
+    /* Lightbox */
+    .lb{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.72);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+      z-index:9999;
+    }
+    .lb.open{display:flex}
+    .lb-card{
+      width:min(1100px, 100%);
+      background: rgba(15,22,36,.92);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      box-shadow: 0 30px 90px rgba(0,0,0,.55);
+      overflow:hidden;
+    }
+    .lb-bar{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:12px 14px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      color: rgba(230,234,242,.9);
+      font-weight: 800;
+      font-size: 13px;
+    }
+    .lb-btn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: rgba(230,234,242,.9);
+      padding:8px 10px;
+      border-radius: 12px;
+      cursor:pointer;
+      font-weight: 900;
+    }
+    .lb-img{
+      width:100%;
+      background: rgba(0,0,0,.25);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .lb-img img{
+      width:100%;
+      height:auto;
+      max-height: 78vh;
+      object-fit: contain;
+      display:block;
+    }
+
+    footer{margin-top:22px; color:var(--muted); font-size:12px; text-align:center}
+    .small{font-size:12px; color:var(--muted)}
+    .accent{color:#d8cffc}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div style="font-size:14px; color:var(--muted); font-weight:700;">Portfolio</div>
+          <b style="font-size:15px;">박현준</b>
+        </div>
+      </div>
+      <nav aria-label="sections">
+        <a href="#highlights">Highlights</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <div class="card hero-main">
+        <div class="kicker">AI Engineer · Python · LLM/RAG · MLOps · Unity</div>
+        <h1>AI를 업무 환경에 연결하는<br><span class="accent">AI Engineer</span></h1>
+        <p class="lead">
+          기술 탐색에 능하고 AI를 활용하여 <b>업무 능력 향상, 프로세스를 개선</b>합니다.<br>
+          다양한 기술을 활용하여 최적의 구조 설계를 중요시합니다.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">📌 Projects 보기</a>
+          <a class="btn" href="#contact">📄 Contact</a>
+        </div>
+      </div>
+
+      <div class="card hero-side">
+        <div class="mini">
+          <h3>Quick Links</h3>
+          <div class="kv">
+            <a href="https://naver.me/GVV5dsvs" target="_blank" rel="noreferrer"><span>Resume</span><div>이력서.pdf</div></a>
+            <div><span>Email</span><div>uiy0111@naver.com</div></div>
+            <div><span>Location</span><div>Seoul, KR</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sections">
+      <section id="highlights" class="card">
+        <div class="section-title">
+          <h2>✨ Highlights</h2>
+        </div>
+        <div class="grid3">
+          <div class="highlight">
+            <div class="pill">⚡ Python</div>
+            <p><b>Python 활용 능력</b></p>
+            <p>Python 기반의 각종 프로그램 개발 역량 및<br>라이브러리 활용 능력</p>
+          </div>
+          <div class="highlight">
+            <div class="pill">📚 AI Agent</div>
+            <p><b>업무 자동화</b>, 생산성 향상</p>
+            <p>LLM/RAG 적용, Django 로컬 서버 구성</p>
+          </div>
+          <div class="highlight">
+            <div class="pill">🧪 AI 모델</div>
+            <p><b>모델 설계/적용 경험 </b>기반 서비스 개발</p>
+            <p>다양한 AI 모델 활용 및 성능 최적화 경험 보유<br>데이터셋 구축 및 모델 학습 능력</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="card">
+        <div class="section-title">
+          <h2>🧩 Projects</h2>
+        </div>
+
+        <div class="projects">
+
+          <div class="proj">
+            <div class="proj-body">
+              <div class="proj-top">
+                <h3>1) 사내 AI Agent 개발 및 운영</h3>
+                <div class="pill">Role: AI Engineer</div>
+              </div>
+              <div class="meta">Python · HTML/JS · Django · LangChain · FAISS · Azure · OpenAI/GPT · MS Graph api</div>
+              <div class="meta"><h3>챗봇, RAG, Raw Data 분석, MS graph api 등 각종 기능 설계</h3></div>
+              <ul>
+                <li>파일 분석 및 생성, 인터넷 검색, 웹페이지 분석, 이미지 생성 등 다양한 기능 제공 챗봇 구축</li>
+                <li>LangChain을 활용한 사내 정보 질의응답 구현</li>
+                <li>Django를 통한 웹 페이지 생성 및 로컬 서버 구성</li>
+                <li>LLM을 활용한 업무 자동화 설계</li>
+                <li>MS Graph api를 통한 MS365 기능 구현 (메일 분석, 일정 관리 등)</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">LLM</span><span class="tag">RAG</span><span class="tag green">Impact: 업무 프로세스 개선</span>
+              </div>
+            </div>
+
+            <div class="proj-media" aria-label="project 1 media">
+              <div class="media-grid">
+                <a class="shot-link" href="#" data-full="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" data-alt="AI Agent">
+              <span class="shot"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" alt="AI Agent"/></span>
+            </a><a class="shot-link" href="#" data-full="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" data-alt="AI Agent2">
+              <span class="shot"><img src="data:imagepng;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" alt="AI Agent2"/></span>
+            </a>
+              </div>
+              <p class="media-note">이미지 클릭하면 크게 열립니다 (ESC로 닫기)</p>
+            </div>
+          </div>
+
+
+          <div class="proj">
+            <div class="proj-body">
+              <div class="proj-top">
+                <h3>2) Keras를 활용한 LSTM TFLite 모델 설계 </h3>
+                <div class="pill">Role: AI Engineer</div>
+              </div>
+              <div class="meta">Keras · Tensorflow · Scikit-learn · Pandas</div>
+              <div class="meta"><h3>On device 환경에서 동작하는 LSTM layer 모델 설계</h3></div>
+              <ul>
+                <li>시계열 데이터를 분석하는 LSTM 모델 설계</li>
+                <li>디바이스의 동작을 분석하여 이상 동작을 감지하는 모델 생성</li>
+                <li>Training Dataset 구축</li>
+                <li>데이터 전처리 및 모델 학습 로직 설계</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Keras</span><span class="tag">TFLite</span><span class="tag green">Impact: 모델 구축</span>
+              </div>
+            </div>
+
+            <div class="proj-media" aria-label="project 2 media">
+              <div class="media-grid">
+                <a class="shot-link" href="#" data-full="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" data-alt="LSTM">
+              <span class="shot"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" alt="LSTM"/></span>
+            </a><a class="shot-link" href="#" data-full="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" data-alt="LSTM2">
+              <span class="shot"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" alt="LSTM2"/></span>
+            </a>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="proj">
+            <div class="proj-body">
+              <div class="proj-top">
+                <h3>3) 업무 자동화 프로그램 개발</h3>
+                <div class="pill">Role: Python Engineer</div>
+              </div>
+              <div class="meta">Python · Tkinter · Pyinstaller</div>
+              <div class="meta"><h3>Python을 통한 업무 자동화 EXE 파일 생성</h3></div>
+              <ul>
+                <li>Tkinter를 사용한 GUI 설계</li>
+                <li>EXE 파일 생성으로 간편한 동작 구조</li>
+                <li>요구조건에 맞춘 프로그램 개발</li>
+                <li>반복 작업 생략으로 업무 효율 증가</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">자동화</span><span class="tag green">Impact: 업무 시간 단축</span>
+              </div>
+            </div>
+
+            <div class="proj-media" aria-label="project 3 media">
+              <div class="media-grid">
+                <a class="shot-link" href="#" data-full="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" data-alt="Program">
+              <span class="shot"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" alt="Program"/></span>
+            </a><a class="shot-link" href="#" data-full="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" data-alt="Program2">
+              <span class="shot"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" alt="Program2"/></span>
+            </a>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="proj">
+            <div class="proj-body">
+              <div class="proj-top">
+                <h3>4) Computer Vision을 활용한 서비스 개발</h3>
+                <div class="pill">Role: AI Engineer</div>
+              </div>
+              <div class="meta">Python · PyTorch · OpenCV · Yolo · TrackNet</div>
+              <div class="meta"><h3>테니스 AI 서비스 적용</h3></div>
+              <ul>
+                <li>OpenCV를 활용한 영상 처리 서비스 구축</li>
+                <li>Vision AI를 적용하여 영상 분석 및 필요 데이터 추출</li>
+                <li>Vision AI 모델 Training Data Labeling</li>
+                <li>고객의 니즈를 토대로 AI를 적용한 서비스 개발</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Computer Vision</span><span class="tag">OpenCV</span><span class="tag green">Impact: Vision AI </span>
+              </div>
+            </div>
+
+            <div class="proj-media" aria-label="project 3 media">
+              <div class="media-grid">
+                <a class="shot-link" href="#" data-full="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" data-alt="Vision">
+              <span class="shot"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" alt="Vision"/></span>
+            </a><a class="shot-link" href="#" data-full="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" data-alt="Vision">
+              <span class="shot"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" alt="Labeling workflow"/></span>
+            </a>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="proj">
+            <div class="proj-body">
+              <div class="proj-top">
+                <h3>5) Unity를 활용한 AR/VR 컨텐츠 개발</h3>
+                <div class="pill">Role: Unity Engineer</div>
+              </div>
+              <div class="meta">Unity · C# · XR · WebRTC · UWP · AR Foundation</div>
+              <div class="meta"><h3>MS Hololens2, Meta Quest, 모바일 컨텐츠 개발</h3></div>
+              <ul>
+                <li>Hololens2 원격 헙업 지원 프로그램 개발</li>
+                <li>WebRTC를 활용한 실시간 영상 전송 구조 설계</li>
+                <li>서비스 상용화 경험</li>
+                <li>AR/VR 교육용 프로그램 개발</li>
+                <li>다양한 XR 컨텐츠 개발 이력</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">Unity</span><span class="tag">XR</span><span class="tag green">Impact: 컨텐츠 개발 능력</span>
+              </div>
+            </div>
+
+            <div class="proj-media" aria-label="project 3 media">
+              <div class="media-grid">
+                <a class="shot-link" href="#" data-full="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" data-alt="Unity App">
+              <span class="shot"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" alt="Unity App"/></span>
+            </a><a class="shot-link" href="#" data-full="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" data-alt="Unity App2">
+              <span class="shot"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" alt="Unity App2"/></span>
+            </a>
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="proj">
+            <div class="proj-body">
+              <div class="proj-top">
+                <h3>6) Unity를 활용한 AR/VR 기술 연구</h3>
+                <div class="pill">Role: Unity Engineer</div>
+              </div>
+              <div class="meta">Unity · C# · MediaPipe · VPS</div>
+              <div class="meta"><h3>XR Glass 탑재 기술 연구 개발</h3></div>
+              <ul>
+                <li>XR Glass Hand Tracking 기술 연구 및 디바이스 적용</li>
+                <li>AR VPS 기술 연구</li>
+                <li>신기술 동향 조사 및 기술 탐색</li>
+              </ul>
+              <div class="tags">
+                <span class="tag">R&D</span><span class="tag">ML</span><span class="tag green">Impact: 기술 연구</span>
+              </div>
+            </div>
+
+            <div class="proj-media" aria-label="project 3 media">
+              <div class="media-grid">
+                <a class="shot-link" href="#" data-full="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" data-alt="XR">
+              <span class="shot"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" alt="XR"/></span>
+            </a><a class="shot-link" href="#" data-full="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" data-alt="XR2">
+              <span class="shot"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==" alt="XR2"/></span>
+            </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="skills" class="card">
+        <div class="section-title">
+          <h2>🛠 Skills</h2>
+        </div>
+        <div class="skills">
+          <span class="skill">Python</span>
+          <span class="skill">PyTorch</span>
+          <span class="skill">TensorFlow</span>
+          <span class="skill">Keras</span>
+          <span class="skill">Hugging Face</span>
+          <span class="skill">Django</span>
+          <span class="skill">Azure</span>
+          <span class="skill">LLM</span>
+          <span class="skill">RAG</span>
+          <span class="skill">Vector DB (FAISS)</span>
+          <span class="skill">Computer Vision</span>
+          <span class="skill">HTML / JS</span>
+          <span class="skill">Unity</span>
+          <span class="skill">C#</span>
+          <span class="skill">AR</span>
+          <span class="skill">VR</span>
+          <span class="skill">Java</span>
+        </div>
+      </section>
+
+      <section id="contact" class="card">
+        <div class="section-title">
+          <h2>📬 Contact</h2>
+        </div>
+        <div class="kv" style="max-width:720px">
+          <div><span>Phone</span><div>010-9277-8759</div></div>
+          <div><span>Email</span><div>uiy0111@naver.com</div></div>
+        </div>
+        <p class="small" style="margin-top:12px;">마지막 업데이트: 2026-02-13</p>
+      </section>
+    </div>
+
+    <footer>
+      <div>© Hyeonjun Park · Built as a single static HTML file.</div>
+    </footer>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+    <div class="lb-card">
+      <div class="lb-bar">
+        <div id="lbTitle">Preview</div>
+        <button class="lb-btn" id="lbClose" type="button">닫기 (ESC)</button>
+      </div>
+      <div class="lb-img">
+        <img id="lbImg" alt="Preview" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImg');
+      const lbTitle = document.getElementById('lbTitle');
+      const lbClose = document.getElementById('lbClose');
+
+      function open(fullSrc, alt){
+        lbImg.src = fullSrc;
+        lbImg.alt = alt || 'Preview';
+        lbTitle.textContent = alt || 'Preview';
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        lbClose.focus();
+      }
+      function close(){
+        lb.classList.remove('open');
+        lbImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      document.addEventListener('click', function(e){
+        const a = e.target.closest('.shot-link');
+        if(a){
+          e.preventDefault();
+          open(a.dataset.full, a.dataset.alt);
+          return;
+        }
+        if(e.target === lb){ close(); }
+      });
+      lbClose.addEventListener('click', close);
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape' && lb.classList.contains('open')) close();
+      });
+    })();
+  </script>
+
+</body>
+</html>
